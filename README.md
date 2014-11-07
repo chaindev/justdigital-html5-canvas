@@ -119,9 +119,10 @@ _4) Criar um círculo animado:_
 Para concluir, quero dizer que essa é apenas uma pequena introdução ao universo canvas, com eles, podemos fazer coisas inacreditáveis como jogos, apps mobile, UX inovadores e muito mais!
 
 Para mais referências sobre a documentação do canvas, recomendo os seguintes links:
-    http://www.w3schools.com/tags/tag_canvas.asp
-    http://www.html5canvastutorials.com
-    http://diveintohtml5.info/canvas.html
+
+- http://www.w3schools.com/tags/tag_canvas.asp
+- http://www.html5canvastutorials.com
+- http://diveintohtml5.info/canvas.html
 
 No proximo post vamos falar mais sobre performance de canvas em diferentes browsers e como receber input (mouse e teclado) do usuário para adicionar interatividade.
 
