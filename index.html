@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="js/app.js"></script>
     <style>
       body{
         background-color: black;
@@ -10,10 +9,20 @@
         margin: 50px auto 0 auto;
         width: 640px;
         height: 480px;
+        display: block;
+        background: white;
       }
     </style>
   </head>
   <body>
+    <select id="example-selection" name="example-selection">
+      <option value="exemplo1">Desenhar retângulo</option>
+      <option value="exemplo2">Desenhar círculo com gradiente</option>
+      <option value="exemplo3">Desenhar texto</option>
+      <option value="exemplo4">Círculo em movimento</option>
+    </select>
+    <button id="run-example">Executar</button>
     <canvas width="640" height="480" id="quadro">O seu navegador não suporta o elemento Canvas</canvas>
+    <script src="js/app.js"></script>
   </body>
 </html>
