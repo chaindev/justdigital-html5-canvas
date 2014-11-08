@@ -34,7 +34,8 @@ Para obter o contexto de um canvas, utilize a função createContext('2d'):
 
 Antes de desenhar com o contexto, é preciso definir um estilo para ser utilizado, depois, utilizar o método de desenho, por exemplo:
 
-_1) Criar retângulo azul com o contexto:_
+*1) Criar retângulo azul com o contexto:*
+
     //Define o estilo do contexto (cor azul)
     ctx.fillStye = '#0000FF';
 
@@ -47,7 +48,8 @@ _1) Criar retângulo azul com o contexto:_
     */
     ctx.fillRect(30, 50, 100, 80);
 
-_2) Criar um círculo com cor gradiente linear_
+*2) Criar um círculo com cor gradiente linear*
+
     /*
       Define um gradiente linear com as seguintes propriedades:
       x inicial: 50
@@ -80,7 +82,8 @@ _2) Criar um círculo com cor gradiente linear_
 
 O conceito é o mesmo para animações, a diferença é que a animação será feita dentro de um laço que será repetido várias vezes num curto intervalo de tempo, como no exemplo:
 
-_3) Escrever no canvas:_
+*3) Escrever no canvas:*
+
     //Definindo a fonte do contexto
     ctx.font="20px Georgia";
 
@@ -90,7 +93,7 @@ _3) Escrever no canvas:_
     //Desenhando o texto
     ctx.fillText("Olá blog!",10,50);
 
-_4) Criar um círculo animado:_
+*4) Criar um círculo animado:*
     
     //Criamos esse objeto que representa um círculo que será animado
     var circulo = {
