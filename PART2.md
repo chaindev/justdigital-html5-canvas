@@ -24,15 +24,12 @@ Utilizando o javascript como recurso, podemos simular um processo de sequência 
     };
 
     //Coloca a função step para ser executada a cada 40 milissegundos
-    setTimeout(step, 40);
+    setInterval(step, 40);
 
 Sim, já vimos essa regra no último tutorial, mas um pouco mais de explicações sobre esse assunto não vai fazer mal à ninguém.
-Na nossa função de renderizar frame é onde vai ocorrer a mágica. Baseado no valor da variável *c*, colocaremos um quadrado em uma posição diferente, assim criando o efeito de movimentação:
+A nossa função de renderizar frame é onde vai ocorrer a mágica. Baseado no valor da variável *c*, colocaremos um quadrado em uma posição diferente, assim criando o efeito de movimentação:
 
-    // Coloque esse código antes da função step
     // Define qual é a velocidade que o retângulo vai se movimentar
-    var velocidade = 1.1;
-
     var renderizarFrame = function(c){
       // Limpa o canvas, para não desenhar um retângulo em cima do outro e causar o efeito de "borrão". Experimente comentar a linha abaixo caso esteja curioso
       ctx.clearRect(0,0,canvas.width,canvas.height);
@@ -43,17 +40,17 @@ Na nossa função de renderizar frame é onde vai ocorrer a mágica. Baseado no 
       ctx.fillRect(c, 50, 100, 80);
     };
 
-    //Altera a função step para utilizar a velocidade
+    var velocidade = 1.1;
+    //Vamos alterar a função step para utilizar a velocidade dinâmica:
     var step = function(){
-      //Quando o browser estiver pronto para desenhar, executa o método step (ele mesmo)
-      requestAnimFrame(step);
-      
       //Aumenta o contador de steps
       c += velocidade;
 
       //Desenha o frame
       renderizarFrame(c);
     };
+
+(Não se esqueça de atualizar a sua função step como fiz acima)
 
 Ok, mas tem algo estranho. Nosso movimento parece estar "travando" em alguns momentos.
 Isso ocorre por que quando o navegador usa o método setInterval, ele não se importa se o canvas terminou seu processamento, ele SEMPRE fará de tudo para atualizar a cada 40 milisegundos, custe o que custar. Isso sobrecarrega nosso motor de renderização.
@@ -76,7 +73,17 @@ Para suprir a necessidade de todos os browsers, vamos encapsular todos esses mé
         window.setTimeout(callback, 1000/60); 
       };
 
-    var step = ...
+    var step = function(){
+      //Quando o browser estiver pronto para desenhar, executa o método step (ele mesmo)
+      requestAnimFrame(step);
+        
+      //Aumenta o contador de steps
+      c += velocidade;
+
+      //Desenha o frame
+      renderizarFrame(c);
+      };
+    }
 
 Agora não precisamos mais do antigo setInterval, mas precisamos iniciar nosso motor chamando o método step pela primeira vez:
 
@@ -87,23 +94,29 @@ Agora não precisamos mais do antigo setInterval, mas precisamos iniciar nosso m
 Pronto. Agora temos um modelo funcional de animação suave.
 
 Como transformar isso em um jogo?
-O que difere uma animação de um jogo é a interatividade, então, vamos adicionar um pouco (só um pouco) de interatividade no nosso jogo. Colocaremos um acelerador de velocidade: a barra de espaço:
+O que difere uma animação de um jogo é a interatividade, então, vamos adicionar um pouco (só um pouco) de interatividade no nosso jogo. Colocaremos um acelerador de velocidade: as setas do teclado:
     
-// Define a captura de eventos do teclado para usarmos a barra de espaço para aumentar a velocidade em 0.2
+    // Define a captura de eventos do teclado para alternar a velocidade de acordo com a seta pressionada
     document.onkeydown = function(e){
-      //Caso seja barra de espaço
-      if (e.keyCode === 32){
-        //Aumenta a velocidade
-        velocidade += 0.5;
+      //Caso alguma seta seja pressionada, temos que responder ao movimento:
 
-        //retorna false pro browser não fazer o efeito
-        return false;
+      switch (e.keyCode){
+        case 39:
+          //Aumenta a velocidade (anda pra direita)
+          velocidade += 0.5;
+        break;
+        case 37:
+          //Reduz a velocidade (anda pra esquerda)
+          velocidade += 0.5;
+        break;
+        default:
+          return;
       }
+      return false;
     }
 
 Para facilitar seu teste, defina o valor inicial da variável velocidade para 0.
 Agora que o retângulo não move, seria bom adicionar uma mensagem no método de desenho:
-
 
     var renderizarFrame = function(c){
       // Limpa o canvas, para não desenhar um retângulo em cima do outro e causar o efeito de "borrão". Experimente comentar a linha abaixo caso esteja curioso
@@ -123,7 +136,7 @@ Agora que o retângulo não move, seria bom adicionar uma mensagem no método de
 
     };
 
-Na próxima parte, vamos melhorar (e muito) nosso sistema de controle (input) e também vamos usar alguns conceitos básicos de física pra dar mais realismo ao jogo.
+Na próxima parte, vamos melhorar (e muito) nosso sistema de controle (input) e também vamos usar alguns conceitos básicos de física pra dar mais realismo ao jogo. Também voltaremos a orientar nosso código a objetos e mostrar algumas estruturas básicas de uma Game Engine.
 
 Fontes:
 http://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes
