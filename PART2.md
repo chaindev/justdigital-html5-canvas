@@ -1,4 +1,4 @@
-HTML5 Canvas - From zero to hero
+====HTML5 Canvas - From zero to hero
 
 Parte 2:
 
@@ -50,7 +50,7 @@ A nossa função de renderizar frame é onde vai ocorrer a mágica. Baseado no v
       renderizarFrame(c);
     };
 
-(Não se esqueça de atualizar a sua função step como fiz acima)
+*(Não se esqueça de atualizar a sua função step como fiz acima)*
 
 Ok, mas tem algo estranho. Nosso movimento parece estar "travando" em alguns momentos.
 Isso ocorre por que quando o navegador usa o método setInterval, ele não se importa se o canvas terminou seu processamento, ele SEMPRE fará de tudo para atualizar a cada 40 milisegundos, custe o que custar. Isso sobrecarrega nosso motor de renderização.
