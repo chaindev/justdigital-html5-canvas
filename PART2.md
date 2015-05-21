@@ -1,4 +1,4 @@
-====HTML5 Canvas - From zero to hero
+# HTML5 Canvas - From zero to hero #
 
 Parte 2:
 
